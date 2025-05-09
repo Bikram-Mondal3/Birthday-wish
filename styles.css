@@ -1,0 +1,339 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    overflow-y: auto;
+    /* Changed from 'hidden' to 'auto' to allow scrolling */
+    position: relative;
+}
+
+/* 3D Scene styling */
+#scene-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    /* Keep it below everything */
+    pointer-events: none;
+    /* Prevent it from capturing mouse events */
+}
+
+.main-container {
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    margin: 40px 0;
+    /* Added margin to improve spacing */
+}
+
+.logo {
+    margin-bottom: 20px;
+    color: #e91e63;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.heart-icon {
+    color: #e91e63;
+    font-size: 1.5rem;
+}
+
+.tagline {
+    color: #e91e63;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.form-container {
+    background: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    max-width: 450px;
+    margin: 0 auto;
+    z-index: 10;
+    /* Ensure form is above other elements */
+    pointer-events: auto;
+    /* Make sure the form can be interacted with */
+}
+
+.heart-corner {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: #e91e63;
+    font-size: 1.2rem;
+}
+
+h2 {
+    color: #9c27b0;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #e91e63;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 10px;
+    background-color: #f0f7ff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    pointer-events: auto;
+    /* Ensure inputs can be clicked and used */
+    opacity: 1;
+    /* Ensure inputs are fully visible */
+}
+
+.date-selects {
+    display: flex;
+    gap: 10px;
+}
+
+.date-selects select {
+    flex: 1;
+}
+
+button {
+    background-color: #e91e63;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px;
+    width: 100%;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #d81b60;
+}
+
+.footer {
+    margin-top: 30px;
+    color: #e91e63;
+    font-size: 0.9rem;
+}
+
+.heart-sm {
+    font-size: 0.9rem;
+}
+
+/* Second page styles */
+.hint {
+    color: #e91e63;
+    font-style: italic;
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+.secret-input {
+    margin-top: 20px;
+}
+
+/* Birthday card styles - modified */
+.birthday-card {
+    display: none;
+    /* Keep this to ensure it's hidden */
+}
+
+/* Balloon Container (previously Heart Tree Container) */
+#heart-tree {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    /* Reduced z-index to put it behind the form */
+    pointer-events: none;
+    /* Prevent it from capturing clicks unless specifically needed */
+    width: 50vw;
+    height: 70vh;
+    max-width: 600px;
+    max-height: 700px;
+}
+
+/* Make balloon clickable only when visible and active */
+.balloon-active {
+    pointer-events: all !important;
+    /* Enable clicks when balloon is active */
+    cursor: pointer;
+    /* Show pointer cursor */
+}
+
+/* Error message styles */
+.error-message {
+    color: #f44336;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    display: none;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal h3 {
+    color: #e91e63;
+    margin-bottom: 15px;
+}
+
+.close-btn {
+    background-color: #9c27b0;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+/* Add class for hiding elements instead of relying on JS to add it */
+.hidden {
+    display: none !important;
+}
+
+/* Photo gallery styles */
+.photo-gallery {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 20;
+    overflow-y: auto;
+    padding: 30px;
+}
+
+.gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.photo-item {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 0.5s, opacity 0.5s;
+}
+
+.photo-item.show {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.photo-item:hover img {
+    transform: scale(1.05);
+}
+
+.photo-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    color: white;
+    padding: 15px;
+    text-align: center;
+    transform: translateY(100%);
+    transition: transform 0.3s;
+    font-family: 'Bell MT', 'Times New Roman', serif;
+}
+
+.photo-item:hover .photo-caption {
+    transform: translateY(0);
+}
+
+.close-gallery {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #e91e63;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 21;
+}
+
+/* Confetti particle styles */
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    pointer-events: none;
+}

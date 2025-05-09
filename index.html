@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Wish Portal</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <!-- Add Three.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 3D Scene Container -->
+    <div id="scene-container"></div>
+    
+    <!-- Heart Tree Container -->
+    <div id="heart-tree"></div>
+    
+    <!-- Photo Gallery -->
+    <div id="photo-gallery" class="photo-gallery">
+        <button class="close-gallery" id="close-gallery">✕</button>
+        <div class="gallery-container" id="gallery-container">
+            <!-- Photos will be added dynamically -->
+        </div>
+        <!-- Background music (hidden initially) -->
+        <audio id="background-music" style="display: none;">
+            <source src="music/music.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+    
+    <div class="main-container">
+        <!-- First Page - Sign Up Form -->
+        <div id="signup-page">
+            <h1 class="logo">Birthday Wish Portal 🎉🎂</h1>
+            <p class="tagline">A special place where love and memories come together.<br>Sign up to experience the magic.</p>
+            
+            <div class="form-container">
+                <div class="heart-corner">🎈</div>
+                <h2>Sign up</h2>
+                
+                <form id="signup-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" placeholder="Enter your name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Date of Birth</label>
+                        <div class="date-selects">
+                            <select id="day" required>
+                                <option value="" disabled selected>Day</option>
+                                <!-- Days will be populated by JavaScript -->
+                            </select>
+                            
+                            <select id="month" required>
+                                <option value="" disabled selected>Month</option>
+                                <!-- Months will be populated by JavaScript -->
+                            </select>
+                            
+                            <select id="year" required>
+                                <option value="" disabled selected>Year</option>
+                                <!-- Years will be populated by JavaScript -->
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input type="number" id="age" placeholder="Enter your age" required min="1" max="120">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender" required>
+                            <option value="" disabled selected>Select your gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                            <option value="prefer-not-to-say">Prefer not to say</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit">Sign up</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Second Page - Secret Code -->
+        <div id="secret-page" class="hidden">
+            <h1 class="logo">Birthday Wish Portal 🎉🎂</h1>
+            <p class="tagline">A special place where love and memories come together.<br>Sign up to experience the magic.</p>
+            
+            <div class="form-container">
+                <h2>One more step...</h2>
+                
+                <p>A special date in DD/MM/YYYY format ❤️</p>
+                
+                <div class="form-group secret-input">
+                    <label for="secret-code">Special Date</label>
+                    <input type="password" id="secret-code" placeholder="•••••••">
+                    <p class="hint">Hint: Enter the date that holds our special memory ❤️</p>
+                    <p id="secret-error" class="error-message">That's not our special date. Please try again.</p>
+                </div>
+                
+                <button id="unlock-btn">Unlock Your Message</button>
+            </div>
+        </div>
+        
+        <!-- Birthday Card - Modified to be in bottom right corner -->
+        <div id="birthday-card" class="birthday-card hidden">
+            <!-- Card content is now hidden and won't be displayed -->
+        </div>
+    </div>
+    
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal">
+        <div class="modal-content">
+            <h3>Thank You!</h3>
+            <p>Your registration was successful.</p>
+            <p>Thanks for joining the Birthday Wish Portal!</p>
+            <button class="close-btn" id="modal-close">Close</button>
+        </div>
+    </div>
+
+    <script src="notification.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
