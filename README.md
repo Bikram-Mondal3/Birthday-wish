@@ -54,3 +54,7 @@ To update the gallery:
 
 To change the background music:
 1. Replace the `music.mp3` file in the `music/` directory
+
+## 📜 License
+
+This project is licensed under the `MIT License`.
